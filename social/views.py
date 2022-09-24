@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .models import *
+
+
+
 # Create your views here.
 def feed(request):
     posts = Post.objects.all()
