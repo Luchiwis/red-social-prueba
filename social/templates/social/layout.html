@@ -16,16 +16,21 @@
 		<nav class="main">
 			<h1 id="logo">Hola</h1>
 			<ul>
-				<li><a href="#">Logout</a></li>
-				<li><a href="#">Register</a></li>
-				<li><a href="#">Login</a></li>
+				<li><a href="/logout">Logout</a></li>
+				<li><a href="/register">Register</a></li>
+				<li><a href="/login">Login</a></li>
 			</ul>
 		</nav>
 	</header>
 
-	<!-------------------------------------
-					Messages 
-	-------------------------------------->
+	{% if messages %}
+		{% for message in messages %}
+			<div class="notification {{message.tags}}">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endif %}
+
 
 	<!-------------------------------------
 					Navigation Bar 

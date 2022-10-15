@@ -126,6 +126,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'media/'
 
+STATIC_ROOT = './media/static/'
 STATIC_URL = './media/static/'
 
+
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGIN_REDIRECT_URL = 'feed'
