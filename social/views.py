@@ -11,9 +11,22 @@ def feed(request):
     ctx = {'posts':posts}
 
     #delete post
-    if request.method == 'POST':
-        Post.objects.filter(id=request.POST['post_id']).delete()
+    if request.method == 'POST' and 'delete' in request.POST:
+        Post.objects.filter(id=request.POST['delete']).delete()
         return redirect('feed')
+
+    #like post
+    if request.method == 'POST' and 'like' in request.POST:
+        post = Post.objects.get(id=request.POST['like'])
+        post.likes.add(request.user)
+        post.dislikes.remove(request.user)
+    
+    #dislike post
+    if request.method == 'POST' and 'dislike' in request.POST:
+        post = Post.objects.get(id=request.POST['dislike'])
+        post.dislikes.add(request.user)
+        post.likes.remove(request.user)
+
 
     return render(request, 'social/feed.html', ctx)
 

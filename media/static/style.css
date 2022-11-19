@@ -293,9 +293,35 @@ img.profile{
 
 }
 
+/* misestilos */
+
+.likes{
+  margin: 1rem;
+  text-align: center;
+}
+
+.likes > div  {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 1rem;
+}
+
+.like {
+  color: green;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 1rem;
+}
+.dislike {
+  color: red;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 1rem;
+}
+
 .delete-post-button {
   background-color: #AB3444;
   font-size: 0.9rem;
   cursor: pointer;
-  font-size: x-small;
+  font-size: xx-small;
 }

@@ -15,6 +15,8 @@ class Post(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 	timestamp = models.DateTimeField(default=timezone.now)
 	content = models.TextField()
+	likes = models.ManyToManyField(User, related_name='post_likes')
+	dislikes = models.ManyToManyField(User, related_name='post_dislikes')
 
 	class Meta:
 		ordering = ['-timestamp']
