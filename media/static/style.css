@@ -292,3 +292,10 @@ img.profile{
   }
 
 }
+
+.delete-post-button {
+  background-color: #AB3444;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-size: x-small;
+}

@@ -3,12 +3,17 @@ from .models import *
 from django.contrib import messages
 from .forms import UserRegisterForm, PostForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 
 # Create your views here.
 def feed(request):
     posts = Post.objects.all()
     ctx = {'posts':posts}
+
+    #delete post
+    if request.method == 'POST':
+        Post.objects.filter(id=request.POST['post_id']).delete()
+        return redirect('feed')
 
     return render(request, 'social/feed.html', ctx)
 
@@ -43,3 +48,19 @@ def post(request):
 	else:
 		form = PostForm()
 	return render(request, 'social/post.html', {'form' : form })
+
+def profile(request, username=None):
+    current_user = request.user
+    if username and username != current_user.username:
+        user = User.objects.get(username=username)
+        # posts = Post.objects.filter(user=user)
+        posts = user.posts.all()
+    else:
+        posts = current_user.posts.all()
+        user = current_user
+
+    # user = get_object_or_404(User, username=username)
+    # posts = Post.objects.filter(user=user)
+    ctx = {'user':user, 'posts':posts}
+    return render(request, 'social/profile.html', ctx)
+

@@ -48,8 +48,14 @@
 		
 		<nav class="second-nav">
 			{% if user.is_authenticated %}
-			<a class="profile" href="#">Mi Perfil</a>
-			<a class="new" href="#">Crear nuevo post</a>
+
+			
+			{% if not request.path|slice:":8" == "/profile" %}
+			<!-- if url is not proflile -->
+			<a class="profile" href="{% url 'profile'%}">Mi Perfil</a>
+			{% endif %}
+			
+			<a class="new" href="{% url 'post' %}">Crear nuevo post</a>
 			{% endif %}
 		</nav>
 
