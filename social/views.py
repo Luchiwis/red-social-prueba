@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 def feed(request):
     posts = Post.objects.all()
-    ctx = {'posts':posts}
+    ctx = {'posts':posts, 'guest': request.user}
 
     #delete post
     if request.method == 'POST' and 'delete' in request.POST:
@@ -74,6 +74,6 @@ def profile(request, username=None):
 
     # user = get_object_or_404(User, username=username)
     # posts = Post.objects.filter(user=user)
-    ctx = {'user':user, 'posts':posts}
+    ctx = {'user': user, 'guest': request.user, 'posts':posts}
     return render(request, 'social/profile.html', ctx)
 

@@ -20,7 +20,7 @@
 			<ul>
 				<li><a href="{% url 'feed' %}">Home</a></li>
 				
-				{% if user.is_authenticated %}
+				{% if guest.is_authenticated %}
 				<li><a href="{% url 'logout' %}">Logout</a></li>
 
 				{% else %}
@@ -43,7 +43,7 @@
 	<div class="main">
 		
 		<nav class="second-nav">
-			{% if user.is_authenticated %}
+			{% if guest.is_authenticated %}
 
 			
 			{% if not request.path|slice:":8" == "/profile" %}

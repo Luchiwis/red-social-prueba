@@ -5,7 +5,6 @@
 <div class="profile">
 	<img src={{ user.profile.image.url }}>
 	<h2>@{{ user.username }}</h2>
-	<button><a class="follow-button" href="#">Follow</a></button>
 </div>
 
 <!-- Follow items -->
@@ -15,13 +14,12 @@
 		<p>{{ user.posts.count }}</p>
 	</div>
 	<div>
-		<h5>Followers</h5>
-		<p>0</p>
-
+		<h5>Likes</h5>
+		<p>{{ user.post_likes.count }}</p>
 	</div>
 	<div>
-		<h5>Following</h5>
-		<p>0</p>
+		<h5>Dislikes</h5>
+		<p>{{ user.post_dislikes.count }}</p>
 	</div>
 </div>
 

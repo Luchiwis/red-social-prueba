@@ -14,6 +14,7 @@
             <time data-time="#">{{post.timestamp|naturaltime}}</time>
             <div class="post">{{post.content}}</div>
             <!-- likes and dislikes -->
+            {% if guest.is_authenticated %}
             <div class="likes">
                 <form method="post">
                     {% csrf_token %}
@@ -46,9 +47,10 @@
                     </div>
                 </form>
             </div>
+            {% endif %}
         </div>
         <!-- delete post -->
-        {% if post.user == user %}
+        {% if guest == post.user %}
         <div class="delete-post">
             <form action="/." method="POST">
                 {% csrf_token %}
