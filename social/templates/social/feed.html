@@ -14,13 +14,14 @@
             <time data-time="#">{{post.timestamp|naturaltime}}</time>
             <div class="post">{{post.content}}</div>
             <!-- likes and dislikes -->
-            {% if guest.is_authenticated %}
             <div class="likes">
                 <form method="post">
                     {% csrf_token %}
 
                     <div class="like">
+                        {% if guest.is_authenticated %}
                         <button class="likes-button" type="submit" name="like" value={{post.id}}>
+                        {% endif %}
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
@@ -29,12 +30,17 @@
                                 </svg>
                                 <span>{{post.likes.count}}</span>
                             </div>
+                            {% if guest.is_authenticated %}
+                        
                         </button>
+                        {% endif %}
 
                     </div>
 
                     <div class="dislike">
+                        {% if guest.is_authenticated %}
                         <button class="likes-button" type="submit" name="dislike" value={{post.id}}>
+                        {% endif %}
                             <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-hand-thumbs-down" viewBox="0 0 16 16">
@@ -43,11 +49,14 @@
                             </svg>
                             <span>{{post.dislikes.count}}</span>
                         </div>
+                        {% if guest.is_authenticated %}
+
                         </button>
+                        {% endif %}
                     </div>
                 </form>
             </div>
-            {% endif %}
+            
         </div>
         <!-- delete post -->
         {% if guest == post.user %}
